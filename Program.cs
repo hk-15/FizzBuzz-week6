@@ -14,6 +14,7 @@
         string result = "";
         result += NumberChecker(num, 3, "Fizz");
         result += NumberChecker(num, 5, "Buzz");
+        result += NumberChecker(num, 7, "Bang");
         if (result.Length == 0)
         {
             return num.ToString();
