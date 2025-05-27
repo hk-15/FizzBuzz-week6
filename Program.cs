@@ -14,11 +14,13 @@
         string result = "";
         if (NumberChecker(num, 11, "Bong") == "Bong")
         {
+            result += NumberChecker(num, 13, "Fezz");
             result += NumberChecker(num, 11, "Bong");
         }
         else
         {
             result += NumberChecker(num, 3, "Fizz");
+            result += NumberChecker(num, 13, "Fezz");
             result += NumberChecker(num, 5, "Buzz");
             result += NumberChecker(num, 7, "Bang");
         }
@@ -31,7 +33,7 @@
 
     private static void Main(string[] args)
     {
-        for (var i = 1; i <= 100; i++)
+        for (var i = 1; i <= 200; i++)
         {
             string result = "";
             result += FizzBuzz(i);
