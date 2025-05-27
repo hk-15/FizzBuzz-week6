@@ -1,6 +1,6 @@
-﻿string NumberChecker(int num, int divisor, string word)
+﻿string NumberChecker(int num, int divisor, string word, string rules)
 {
-    if (num % divisor == 0)
+    if (num % divisor == 0 && rules.Contains(word))
     {
         return word;
     }
@@ -10,67 +10,37 @@
 string FizzBuzz(int num, string rules)
 {
     string result = "";
-    if (rules.Contains("6") && num % 17 == 0)
+    if (num % 17 == 0 && rules.Contains("Reverse"))
     {
-        if (rules.Contains("4") && num % 11 == 0)
+        if (num % 11 == 0)
         {
-            result += NumberChecker(num, 11, "Bong");
-            if (rules.Contains("5"))
-            {
-                result += NumberChecker(num, 13, "Fezz"); 
-            }
+            result += NumberChecker(num, 11, "Bong", rules);
+            result += NumberChecker(num, 13, "Fezz", rules); 
+            
         }
         else
         {
-            if (rules.Contains("3"))
-            {
-                result += NumberChecker(num, 7, "Bang");
-            }
-            if (rules.Contains("2"))
-            {
-                result += NumberChecker(num, 5, "Buzz");
-            }
-            if (rules.Contains("5"))
-            {
-                result += NumberChecker(num, 13, "Fezz");
-            }
-            if (rules.Contains("1"))
-            {
-                result += NumberChecker(num, 3, "Fizz");
-
-            }
+            result += NumberChecker(num, 7, "Bang", rules);
+            result += NumberChecker(num, 5, "Buzz", rules);
+            result += NumberChecker(num, 13, "Fezz", rules);
+            result += NumberChecker(num, 3, "Fizz", rules);
         }
         
     }
     else
     {
-        if (rules.Contains("4") && num % 11 == 0)
+        if (num % 11 == 0)
         {
-            if (rules.Contains("5"))
-            {
-                result += NumberChecker(num, 13, "Fezz");
-            }
-            result += NumberChecker(num, 11, "Bong");
+            result += NumberChecker(num, 13, "Fezz", rules);
+            result += NumberChecker(num, 11, "Bong", rules);
         }
         else
         {
-            if (rules.Contains("1"))
-            {
-                result += NumberChecker(num, 3, "Fizz");
-
-            }
-            if (rules.Contains("5"))
-            {
-                result += NumberChecker(num, 13, "Fezz");
-            }
-            if (rules.Contains("2"))
-            {
-                result += NumberChecker(num, 5, "Buzz");
-            }
-            if (rules.Contains("3"))
-            {
-                result += NumberChecker(num, 7, "Bang");
-            }
+            result += NumberChecker(num, 3, "Fizz", rules);
+            result += NumberChecker(num, 13, "Fezz", rules);
+            result += NumberChecker(num, 5, "Buzz", rules);
+            result += NumberChecker(num, 7, "Bang", rules);
+        
         }
     }
 
@@ -92,12 +62,12 @@ while (!isNumInputValid)
 }
 
 string finalRules = "";
-string fizz = "1";
-string buzz = "2";
-string bang = "3";
-string bong = "4";
-string fezz = "5";
-string reverse = "6";
+string fizz = "Fizz";
+string buzz = "Buzz";
+string bang = "Bang";
+string bong = "Bong";
+string fezz = "Fezz";
+string reverse = "Reverse";
 
 Console.WriteLine("And now which rules would you like to implement?");
 Console.WriteLine("Press 1 to include the rule or any other key to skip it.");
@@ -107,7 +77,7 @@ string rulesChecker(string num, string rule)
 {
     if (num == "1")
     {
-        return rule;
+        return rule + " ";
     }
     return "";
 }
@@ -153,7 +123,7 @@ if (rulesInput != null)
 {
    finalRules += rulesChecker(rulesInput, reverse); 
 }
-
+Console.WriteLine(finalRules);
 Console.WriteLine("OK, here we go. Preparing to FizzBuzz");
 Console.WriteLine(". . .");
 
