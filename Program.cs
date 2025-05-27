@@ -12,9 +12,16 @@
     static string FizzBuzz(int num)
     {
         string result = "";
-        result += NumberChecker(num, 3, "Fizz");
-        result += NumberChecker(num, 5, "Buzz");
-        result += NumberChecker(num, 7, "Bang");
+        if (NumberChecker(num, 11, "Bong") == "Bong")
+        {
+            result += NumberChecker(num, 11, "Bong");
+        }
+        else
+        {
+            result += NumberChecker(num, 3, "Fizz");
+            result += NumberChecker(num, 5, "Buzz");
+            result += NumberChecker(num, 7, "Bang");
+        }
         if (result.Length == 0)
         {
             return num.ToString();
